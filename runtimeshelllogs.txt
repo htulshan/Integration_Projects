@@ -1,0 +1,561 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\Heman> cd .\Desktop\
+PS C:\Users\Heman\Desktop> cd '.\python test scripts\'
+PS C:\Users\Heman\Desktop\python test scripts> cd .\Integrationproject\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                Collecting_outputs_from_multiple_devices
+da----       27-10-2019     08:26                config_generator
+da----       27-10-2019     08:26                config_pusher
+da----       27-10-2019     08:26                Login
+da----       27-10-2019     08:26                preparing_variable
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                Collecting_outputs_from_multiple_devices
+da----       27-10-2019     08:26                config_generator
+da----       27-10-2019     08:26                config_pusher
+da----       27-10-2019     08:26                Login
+da----       27-10-2019     08:26                preparing_variable
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd  .\Login\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                input
+da----       27-10-2019     08:44                output
+-a----       24-10-2019     14:00          16499 login.py
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login> python .\login.py
+Do you want to enter the username through CLI or through username.yaml file [CLI/file]: CLI
+Enter the usernames and type 'OK' once done:
+admin
+OK
+Do you want to enter the password through CLI or through password.yaml file [CLI/file]: CLI
+Enter the password and type 'OK' once done:
+cisco
+OK
+Do you want to enter the enable password through CLI or through enablepassword.yaml file [CLI/file]: CLI
+Enter the enable password and type 'OK' once done:
+OK
+Please enter the subnet of Lab IP: 10.21.2.0/28
+Input the excluded IPs, enter 'OK' once done:
+10.21.2.2
+OK
+Input the included IPs, enter 'OK' once done:
+OK
+========================================
+Range of useable IPs is:
+['10.21.2.1', '10.21.2.3', '10.21.2.4', '10.21.2.5', '10.21.2.6', '10.21.2.7', '10.21.2.8', '10.21.2.9', '10.21.2.10', '10.21.2.11', '10.21.2.12', '10.21.2.13', '10.21.2.14']
+========================================
+========================================
+To start the script processing press Return to exit type the break sequence :
+========================================
+========================================
+Checking for subset of reachable ips.
+========================================
+========================================
+Range of reachable IPs is:
+['10.21.2.3', '10.21.2.4', '10.21.2.5', '10.21.2.6', '10.21.2.7', '10.21.2.8', '10.21.2.9', '10.21.2.10', '10.21.2.11']
+========================================
+========================================
+Checking for subset of telnet enabled ips.
+========================================
+========================================
+Range of telnet enabled IPs is:
+['10.21.2.3', '10.21.2.4', '10.21.2.5', '10.21.2.6', '10.21.2.7']
+========================================
+========================================
+Checking for subset of SSH enabled ips.
+========================================
+========================================
+Range of SSH enabled IPs is:
+['10.21.2.8', '10.21.2.9', '10.21.2.10', '10.21.2.11']
+========================================
+========================================
+Trying to login into SSH enabled devices.
+========================================
+========================================
+IPs and there login details
+For IP 10.21.2.8 : Username admin Password cisco
+For IP 10.21.2.9 : Username admin Password cisco
+For IP 10.21.2.10 : Username admin Password cisco
+For IP 10.21.2.11 : Username admin Password cisco
+========================================
+========================================
+Trying to login into telnet enabled devices that have SSH disabled
+========================================
+========================================
+IPs and there login details
+For IP 10.21.2.3 : Username admin Password cisco
+For IP 10.21.2.4 : Username admin Password cisco
+For IP 10.21.2.5 : Username admin Password cisco
+For IP 10.21.2.6 : Username admin Password cisco
+For IP 10.21.2.7 : Username admin Password cisco
+========================================
+========================================
+Data passed to find enable password:
+{'device_type': 'cisco_ios', 'ip': '10.21.2.8', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.9', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.10', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.11', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.3', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.4', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.5', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.6', 'username': 'admin', 'password': 'cisco'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.7', 'username': 'admin', 'password': 'cisco'}
+========================================
+========================================
+Trying to login into the devices using different enable password
+========================================
+========================================
+Data received after trying enable passwords
+{'device_type': 'cisco_ios', 'ip': '10.21.2.8', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.9', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.10', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios', 'ip': '10.21.2.11', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.3', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.4', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.5', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.6', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+{'device_type': 'cisco_ios_telnet', 'ip': '10.21.2.7', 'username': 'admin', 'password': 'cisco', 'secret': 'Not Required'}
+========================================
+========================================
+Data written to file output.csv
+Hit Return to exit the script
+========================================
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Login> cd..
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd .\Collecting_outputs_from_multiple_devices\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     16:24                input
+da----       27-10-2019     08:46                output
+-a----       24-10-2019     14:00           3692 Output_from _multiple_devices.py
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices> python '.\Output_from _multiple_devices.py'
+========================================
+Please make sure that login data is stored in 'logindata.csv' file and show command is stored in 'commandset.yaml' file, hit RETURN to continue
+========================================
+Reading logindata.
+========================================
+Reading show command.
+========================================
+Connecting to devices and collecting outputs.
+========================================
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:25:16.096365 Connection requested to: 10.21.2.3
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:25:16.130177 Connection requested to: 10.21.2.4
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:25:16.148957 Connection requested to: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:25:16.165233 Connection requested to: 10.21.2.6
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:25:16.177131 Connection requested to: 10.21.2.7
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:25:25.146778 Connection established with: 10.21.2.5
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:25:25.147588 Connection established with: 10.21.2.4
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:25:25.150037 Connection established with: 10.21.2.7
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:25:25.150863 Connection established with: 10.21.2.3
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:25:25.153310 Collecting output from: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:25:25.154922 Connection established with: 10.21.2.6
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:25:25.155739 Collecting output from: 10.21.2.4
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:25:25.187512 Collecting output from: 10.21.2.7
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:25:25.187512 Collecting output from: 10.21.2.3
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:25:25.196473 Collecting output from: 10.21.2.6
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:25:25.937602 Collected outputs from: 10.21.2.5
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:25:25.942470 Connection requested to: 10.21.2.8
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:25:25.946523 Collected outputs from: 10.21.2.7
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:25:25.947341 Connection requested to: 10.21.2.9
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:25:26.000843 Collected outputs from: 10.21.2.3
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:25:26.000843 Collected outputs from: 10.21.2.6
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:25:26.000843 Connection requested to: 10.21.2.10
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:25:26.004086 Connection requested to: 10.21.2.11
+Thread-1 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-4 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-2 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:25:26.188145 Collected outputs from: 10.21.2.4
+Thread-3 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-1 paramiko.transport INFO: Authentication (password) successful!
+Thread-2 paramiko.transport INFO: Authentication (password) successful!
+Thread-3 paramiko.transport INFO: Authentication (password) successful!
+Thread-4 paramiko.transport INFO: Authentication (password) successful!
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:25:31.225847 Connection established with: 10.21.2.9
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:25:31.238816 Collecting output from: 10.21.2.9
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:25:31.239630 Connection established with: 10.21.2.8
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:25:31.243686 Collecting output from: 10.21.2.8
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:25:31.248552 Connection established with: 10.21.2.10
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:25:31.259899 Collecting output from: 10.21.2.10
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:25:31.261541 Connection established with: 10.21.2.11
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:25:31.264797 Collecting output from: 10.21.2.11
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:25:32.232602 Collected outputs from: 10.21.2.8
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:25:32.234940 Collected outputs from: 10.21.2.9
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:25:32.235726 Collected outputs from: 10.21.2.11
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:25:32.235726 Collected outputs from: 10.21.2.10
+========================================
+Writing Data to "output.txt" file.
+========================================
+========================================
+Data written to output.txt file, hit RETURN to exit
+========================================
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\Collecting_outputs_from_multiple_devices> cd..
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                Collecting_outputs_from_multiple_devices
+da----       27-10-2019     08:26                config_generator
+da----       27-10-2019     08:26                config_pusher
+da----       27-10-2019     08:26                Login
+da----       27-10-2019     08:26                preparing_variable
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd .\preparing_variable\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     16:29                input
+da----       27-10-2019     08:26                output
+-a----       24-10-2019     15:50           2940 generating_variable_files.py
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable> python.exe .\generating_variable_files.py
+========================================
+Confirm that all the required data is store in input/result, input/inputfiles/files, press RETURN to continue
+========================================
+Reading data from input/result.csv
+========================================
+Data written to output/outputfiles/, output/result.csv. Press RETURN to exit the script.
+========================================
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable>
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\preparing_variable> cd..
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                Collecting_outputs_from_multiple_devices
+da----       27-10-2019     08:26                config_generator
+da----       27-10-2019     08:26                config_pusher
+da----       27-10-2019     08:26                Login
+da----       27-10-2019     08:26                preparing_variable
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd .\config_generator\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_generator> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_generator
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     16:32                input
+da----       27-10-2019     08:26                output
+-a----       25-10-2019     04:39           2388 confgen.py
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_generator> python.exe .\confgen.py
+========================================
+Ensure that all the input data is present in input/templates, input/result.csv, press RETURN to continue
+========================================
+Reading Template from 'input/templates'.
+========================================
+Reading 'input/result.csv'.
+========================================
+Reading input variable files from 'input/inputfiles/', and writing config to 'output/outputfiles/'.
+========================================
+Data has been written in 'output/outputfiles/{device[ip]}_config.txt', output/result.csv. Press RETURN to exit script
+========================================
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_generator> cd..
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd .\config_generator\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_generator> cd..
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     08:26                Collecting_outputs_from_multiple_devices
+da----       27-10-2019     08:26                config_generator
+da----       27-10-2019     08:26                config_pusher
+da----       27-10-2019     08:26                Login
+da----       27-10-2019     08:26                preparing_variable
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject> cd .\config_pusher\
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_pusher> ls
+
+
+    Directory: C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_pusher
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+da----       27-10-2019     16:34                input
+da----       27-10-2019     08:26                output
+-a----       26-10-2019     01:33          12210 confpusher.py
+
+
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_pusher> python .\confpusher.py
+========================================
+Please confirm all the input data is saved to : input/result.csv,
+input/commandlist.yaml, input/inputfiles/{device["ip"]}_config.txt.
+Press RETURN to confirm
+========================================
+Reading data from input/result.csv.
+========================================
+Reading data from input/commandlist.yaml.
+========================================
+Reading data from input/inputfiles/{device['ip']}_config.txt
+========================================
+Performing actions on network devices
+========================================
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:35:49.980904 Connection requested to: 10.21.2.3
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:35:50.021067 Connection requested to: 10.21.2.4
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:35:50.033262 Connection requested to: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:35:50.036129 Connection requested to: 10.21.2.6
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:35:50.040433 Connection requested to: 10.21.2.7
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:35:59.010276 Connection established with: 10.21.2.7
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:35:59.011010 Connection established with: 10.21.2.3
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:35:59.011751 Connection established with: 10.21.2.4
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:35:59.011751 Connection established with: 10.21.2.6
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:35:59.012474 Connection established with: 10.21.2.5
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:35:59.016137 Collecting preconfig outputs from: 10.21.2.7
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:35:59.016137 Collecting preconfig outputs from: 10.21.2.3
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:35:59.016870 Collecting preconfig outputs from: 10.21.2.4
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:35:59.023458 Collecting preconfig outputs from: 10.21.2.6
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:35:59.024195 Collecting preconfig outputs from: 10.21.2.5
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:00.492395 Collected preconfig outputs from: 10.21.2.4
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:00.501075 Pushing config to: 10.21.2.4
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:00.516993 Collected preconfig outputs from: 10.21.2.3
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:00.532195 Collected preconfig outputs from: 10.21.2.7
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:36:00.540148 Collected preconfig outputs from: 10.21.2.5
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:00.541595 Pushing config to: 10.21.2.3
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:00.542319 Pushing config to: 10.21.2.7
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:36:00.543042 Pushing config to: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:00.545943 Collected preconfig outputs from: 10.21.2.6
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:00.558973 Pushing config to: 10.21.2.6
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:04.203204 Successfully pushed configuration on: 10.21.2.3
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:04.203789 Collecting postconfig outputs from: 10.21.2.3
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:04.310270 Successfully pushed configuration on: 10.21.2.7
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:04.312022 Collecting postconfig outputs from: 10.21.2.7
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:04.473493 Successfully pushed configuration on: 10.21.2.4
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:04.488704 Collecting postconfig outputs from: 10.21.2.4
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:36:04.522059 Successfully pushed configuration on: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:04.522635 Successfully pushed configuration on: 10.21.2.6
+ThreadPoolExecutor-0_2 root INFO: ===> 2019-10-27 16:36:04.533167 Collecting postconfig outputs from: 10.21.2.5
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:04.533167 Collecting postconfig outputs from: 10.21.2.6
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:05.459849 Collected postconfig outputs from: 10.21.2.3
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:05.470981 Connection requested to: 10.21.2.8
+Thread-1 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:05.594407 Collected postconfig outputs from: 10.21.2.7
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:05.600260 Connection requested to: 10.21.2.9
+Thread-3 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:05.975269 Collected postconfig outputs from: 10.21.2.4
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:05.988140 Connection requested to: 10.21.2.10
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:06.025574 Collected postconfig outputs from: 10.21.2.6
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:06.026745 Connection requested to: 10.21.2.11
+ThreadPoolExecutor-0_2 root INFO: <=== 2019-10-27 16:36:06.033768 Collected postconfig outputs from: 10.21.2.5
+Thread-6 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-5 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-1 paramiko.transport INFO: Authentication (password) successful!
+Thread-3 paramiko.transport INFO: Authentication (password) successful!
+Thread-6 paramiko.transport INFO: Authentication (password) successful!
+Thread-5 paramiko.transport INFO: Authentication (password) successful!
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:10.693537 Connection established with: 10.21.2.9
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:10.704654 Collecting preconfig outputs from: 10.21.2.9
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:10.743267 Connection established with: 10.21.2.8
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:10.745605 Collecting preconfig outputs from: 10.21.2.8
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:11.048651 Connection established with: 10.21.2.11
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:11.060352 Collecting preconfig outputs from: 10.21.2.11
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:11.127626 Connection established with: 10.21.2.10
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:11.129386 Collecting preconfig outputs from: 10.21.2.10
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:14.333728 Collected preconfig outputs from: 10.21.2.8
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:14.338266 Pushing config to: 10.21.2.8
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:14.620094 Collected preconfig outputs from: 10.21.2.9
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:14.625768 Pushing config to: 10.21.2.9
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:14.781708 Collected preconfig outputs from: 10.21.2.11
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:14.787409 Pushing config to: 10.21.2.11
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:15.104942 Collected preconfig outputs from: 10.21.2.10
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:15.110613 Pushing config to: 10.21.2.10
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:18.085457 Successfully pushed configuration on: 10.21.2.8
+ThreadPoolExecutor-0_0 root INFO: ===> 2019-10-27 16:36:18.086586 Collecting postconfig outputs from: 10.21.2.8
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:18.413786 Successfully pushed configuration on: 10.21.2.9
+ThreadPoolExecutor-0_4 root INFO: ===> 2019-10-27 16:36:18.418895 Collecting postconfig outputs from: 10.21.2.9
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:18.547052 Successfully pushed configuration on: 10.21.2.11
+ThreadPoolExecutor-0_3 root INFO: ===> 2019-10-27 16:36:18.548181 Collecting postconfig outputs from: 10.21.2.11
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:18.875951 Successfully pushed configuration on: 10.21.2.10
+ThreadPoolExecutor-0_1 root INFO: ===> 2019-10-27 16:36:18.881072 Collecting postconfig outputs from: 10.21.2.10
+ThreadPoolExecutor-0_0 root INFO: <=== 2019-10-27 16:36:21.833779 Collected postconfig outputs from: 10.21.2.8
+ThreadPoolExecutor-0_4 root INFO: <=== 2019-10-27 16:36:21.926216 Collected postconfig outputs from: 10.21.2.9
+ThreadPoolExecutor-0_3 root INFO: <=== 2019-10-27 16:36:22.274396 Collected postconfig outputs from: 10.21.2.11
+ThreadPoolExecutor-0_1 root INFO: <=== 2019-10-27 16:36:22.617473 Collected postconfig outputs from: 10.21.2.10
+========================================
+All necessary actions performed on network devices.
+========================================
+Writing output data.
+========================================
+Writing output result data.
+========================================
+Please perform manual checks before we save the configurations.
+========================================
+Input IPs for which configuration is NOT to be save, Enter 'OK' one done.
+OK
+========================================
+Saving configuration.
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:32.401224 Connection requested to: 10.21.2.3
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:32.421952 Connection requested to: 10.21.2.4
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:32.427138 Connection requested to: 10.21.2.5
+ThreadPoolExecutor-1_3 root INFO: ===> 2019-10-27 16:36:32.436758 Connection requested to: 10.21.2.6
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:32.438979 Connection requested to: 10.21.2.7
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:41.451033 Connection established with: 10.21.2.7
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:41.451033 Saving configuraiton on: 10.21.2.7
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:41.551800 Connection established with: 10.21.2.4
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:41.551800 Connection established with: 10.21.2.5
+ThreadPoolExecutor-1_3 root INFO: <=== 2019-10-27 16:36:41.554682 Connection established with: 10.21.2.6
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:41.554682 Connection established with: 10.21.2.3
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:41.559476 Saving configuraiton on: 10.21.2.4
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:41.559476 Saving configuraiton on: 10.21.2.5
+ThreadPoolExecutor-1_3 root INFO: ===> 2019-10-27 16:36:41.560437 Saving configuraiton on: 10.21.2.6
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:41.566192 Saving configuraiton on: 10.21.2.3
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:42.187447 Configuration saved on: 10.21.2.7
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:42.198906 Collecting startup config from: 10.21.2.7
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:42.305553 Configuration saved on: 10.21.2.3
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:42.306436 Configuration saved on: 10.21.2.4
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:42.308194 Configuration saved on: 10.21.2.5
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:42.314364 Collecting startup config from: 10.21.2.5
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:42.310844 Collecting startup config from: 10.21.2.4
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:42.309971 Collecting startup config from: 10.21.2.3
+ThreadPoolExecutor-1_3 root INFO: <=== 2019-10-27 16:36:42.505631 Configuration saved on: 10.21.2.6
+ThreadPoolExecutor-1_3 root INFO: ===> 2019-10-27 16:36:42.538242 Collecting startup config from: 10.21.2.6
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:42.846731 Collected startup config from: 10.21.2.7
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:42.851133 Connection requested to: 10.21.2.8
+Thread-9 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:42.967567 Collected startup config from: 10.21.2.3
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:42.970120 Connection requested to: 10.21.2.9
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:42.971892 Collected startup config from: 10.21.2.4
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:42.978941 Collected startup config from: 10.21.2.5
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:42.979817 Connection requested to: 10.21.2.10
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:42.981633 Connection requested to: 10.21.2.11
+Thread-12 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-11 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+Thread-13 paramiko.transport INFO: Connected (version 1.99, client Cisco-1.25)
+ThreadPoolExecutor-1_3 root INFO: <=== 2019-10-27 16:36:43.394952 Collected startup config from: 10.21.2.6
+Thread-9 paramiko.transport INFO: Authentication (password) successful!
+Thread-11 paramiko.transport INFO: Authentication (password) successful!
+Thread-13 paramiko.transport INFO: Authentication (password) successful!
+Thread-12 paramiko.transport INFO: Authentication (password) successful!
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:48.138007 Connection established with: 10.21.2.8
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:48.140759 Saving configuraiton on: 10.21.2.8
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:48.185546 Connection established with: 10.21.2.11
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:48.189011 Saving configuraiton on: 10.21.2.11
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:48.200703 Connection established with: 10.21.2.10
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:48.202075 Saving configuraiton on: 10.21.2.10
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:48.292332 Connection established with: 10.21.2.9
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:48.297175 Saving configuraiton on: 10.21.2.9
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:51.246653 Configuration saved on: 10.21.2.10
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:51.247279 Configuration saved on: 10.21.2.11
+ThreadPoolExecutor-1_1 root INFO: ===> 2019-10-27 16:36:51.249190 Collecting startup config from: 10.21.2.10
+ThreadPoolExecutor-1_2 root INFO: ===> 2019-10-27 16:36:51.250470 Collecting startup config from: 10.21.2.11
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:51.387633 Configuration saved on: 10.21.2.9
+ThreadPoolExecutor-1_0 root INFO: ===> 2019-10-27 16:36:51.389542 Collecting startup config from: 10.21.2.9
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:51.418755 Configuration saved on: 10.21.2.8
+ThreadPoolExecutor-1_4 root INFO: ===> 2019-10-27 16:36:51.422578 Collecting startup config from: 10.21.2.8
+ThreadPoolExecutor-1_2 root INFO: <=== 2019-10-27 16:36:52.067789 Collected startup config from: 10.21.2.11
+ThreadPoolExecutor-1_1 root INFO: <=== 2019-10-27 16:36:52.073514 Collected startup config from: 10.21.2.10
+ThreadPoolExecutor-1_4 root INFO: <=== 2019-10-27 16:36:52.243068 Collected startup config from: 10.21.2.8
+ThreadPoolExecutor-1_0 root INFO: <=== 2019-10-27 16:36:52.251955 Collected startup config from: 10.21.2.9
+========================================
+Writing output result data.
+========================================
+All required changes have been made and relevant data has been saved to output files, Press Retrun to exit the script
+========================================
+PS C:\Users\Heman\Desktop\python test scripts\Integrationproject\config_pusher>
