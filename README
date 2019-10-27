@@ -1,0 +1,64 @@
+Integration Project:
+
+Objective.
+
+1) Testing VTY access to devices using management subnet.
+2) Taking outputs from multiple devices using the output of step 1.
+3) Creating variable list for configuration template based on output collected in step 2
+4) creating configuration files for devices based of step 3
+5) pushing configuration to all the devices using the output in step 4.
+
+
+Project logic :
+
+This project takes into consideration several issues that we encounter in day to day life when managing networks of medium and large scale.
+The project consists of 5 scripts that can be used individually as standalone scripts or all 5 can be used in close coordination with each other to achieve a common goal, network configuration.
+
+Script 1:
+
+It can be used to check if vty access is working or not on the network devices.
+Present the data in csv format :
+
+ip    Reachable    SSH Enabled    Telnet Enabled    username    password    secret    device_type
+
+Script 2:
+
+It can be used to collect the same output from multiple devices.
+The input file is csv containing the login details of all the devices, csv output of script 1 can be used as an input.
+
+The output of the script is a csv file containing the result of the script run on all the network devices, also the output is saved in individual files in the output folder.
+
+
+Script 3:
+
+
+This script uses the output of script 2 to generate variable files for all the devices to be used by jinja2 module.
+This is one of the two most dynamic scripts in this project as depending on what you want to configure and how you want to configure it the logic of the script will have to be changed accordingly.
+
+The output of this script is a result.csv file that stores the result of the script run and the variable files of each device are stored as deviceIP_variable.yaml format.
+
+Script 4:
+ 
+This script is used to generate config files for all the devices.
+This is the second most dynamic script in the project and it works in close coordination with script 3.
+The script logic will have to be changed depending on what you want to configure on the devices.
+The output of the script is a result.csv file which gives you the overall result of running the script. The config files for all the devices are stored in output/outputfiles directory.
+
+Script 5:
+
+This script is used to push the config files to the devices in the network,
+The input of the file can be generated using script 1, 2, 3, 4 or you can use this as a standalone script.
+
+The script takes pre config running-config, additionally show commands, post config running-config prompts you to manually check the pre and post config output before saving the config on the devices.
+The script after saving the config also takes the startup-config.
+The overall result of running the script is saved in result.csv file.
+
+
+Test case:
+
+In the test case, I have successfully configured interface descriptions on 9 network devices based on show cdp n detailed output.
+
+PS: If you want to use these scripts in your network and need any assistance, you can reach out to me.
+
+
+
