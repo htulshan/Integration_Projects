@@ -10,6 +10,7 @@ import time
 import re
 import csv
 import yaml
+from getpass import getpass
 
 class Login():
 
@@ -52,6 +53,7 @@ class Login():
 	#to check if the ip passed to it is reachable or not, returns to code along with the ip
 	def check_for_reachable_ips(self, ip):
 		result = subprocess.run(['ping', '-c', '3', '-W', '1', ip], stdout=subprocess.DEVNULL)
+		print(result)
 		return result.returncode, ip
 
 	#to check if SSH is enabled on the device or not by logging into it with default username and password : ''
@@ -70,7 +72,7 @@ class Login():
 		except:
 			return False, devicedata['ip']#any other exception is taken as failure to connect to the device using SSH
 		else:
-			return True, devicedata['ip']#if we are able to login into the device using default username and password.
+			return True, devicedata['ip']#if we are able to login into the device using blank username and password.
 
 	#to check if telnet is enabled on the device or not by logging into it using telnet.
 	def test_if_telnet_is_enabled(self, ip):
@@ -285,7 +287,7 @@ class Login():
 		usernamelist = []
 
 		inputmethod = input("Do you want to enter the username through CLI or through username.yaml file [CLI/file]: ")
-		if inputmethod == 'CLI':
+		if inputmethod.lower() == 'cli':
 			print("Enter the usernames and type 'OK' once done: ")
 			while True:
 				username = input()
@@ -306,10 +308,10 @@ class Login():
 		passwordlist = []
 
 		inputmethod = input("Do you want to enter the password through CLI or through password.yaml file [CLI/file]: ")
-		if inputmethod == 'CLI':
+		if inputmethod.lower() == 'cli':
 			print("Enter the password and type 'OK' once done: ")
 			while True:
-				password = input()
+				password = getpass()
 				if password == 'OK':
 					break
 				else:
@@ -327,10 +329,10 @@ class Login():
 		enablelist = []
 
 		inputmethod = input("Do you want to enter the enable password through CLI or through enablepassword.yaml file [CLI/file]: ")
-		if inputmethod == 'CLI':
+		if inputmethod.lower() == 'cli':
 			print("Enter the enable password and type 'OK' once done: ")
 			while True:
-				enable = input()
+				enable = getpass()
 				if enable == 'OK':
 					break
 				else:
@@ -373,6 +375,7 @@ class Login():
 		print('=='*20)
 
 
+		#final check before starting script processing.
 		print('=='*20)
 		input("To start the script processing press Return to exit type the break sequence :")
 		print('=='*20)
@@ -419,7 +422,7 @@ class Login():
 		print('=='*20)
 		result = []
 		with ThreadPoolExecutor(max_workers=10) as executor: #checks for SSH on 10 devices simultaneously
-			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat('cisco_ios')))
+			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat('cisco_ios')))#defaults to check for cisco ios
 		for returncode, ip in result:
 			if returncode:
 				sshenabledips.append(ip)
@@ -435,7 +438,7 @@ class Login():
 		for i in sshenabledips:
 			if i in telnetminussships: telnetminussships.remove(i)
 
-
+		#here
 		#trying to login into SSH enaled devices.
 		print('=='*20)
 		print("Trying to login into SSH enabled devices.")
