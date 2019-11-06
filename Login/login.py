@@ -51,7 +51,7 @@ class Login():
 
 	#to check if the ip passed to it is reachable or not, returns to code along with the ip
 	def check_for_reachable_ips(self, ip):
-		result = subprocess.run(f'ping -n 3 -w 1 {ip}', stdout=subprocess.DEVNULL)
+		result = subprocess.run(['ping', '-c', '3', '-W', '1', ip], stdout=subprocess.DEVNULL)
 		return result.returncode, ip
 
 	#to check if SSH is enabled on the device or not by logging into it with default username and password : ''
