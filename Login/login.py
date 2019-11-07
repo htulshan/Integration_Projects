@@ -384,7 +384,7 @@ class Login():
 		sshloginresult = [] #result from trying to login into the device via SSH
 		telnetloginresult = [] #result from trying to login into the device via telnet
 		enablepasswordlist = []
-
+		device_type = 'cisco_ios'#default device type
 		#reading usernames
 		usernamelist = self.username_list()
 
@@ -393,6 +393,12 @@ class Login():
 
 		#reading enable passwords
 		enablepasswordlist = self.enable_list()
+
+		#for default device type
+		print('=='*20)
+		defaultdevice_type = input("Please enter the default device type [cisco_ios]: ")
+		print('=='*20)
+		if defaultdevice_type: device_type = defaultdevice_type
 
 		#to calculate valid ip range
 		validhostips = self.extract_ip_list()
@@ -449,7 +455,7 @@ class Login():
 		print('=='*20)
 		result = []
 		with ThreadPoolExecutor(max_workers=10) as executor: #checks for SSH on 10 devices simultaneously
-			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat('cisco_ios')))#bug 1
+			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat(device_type)))
 		for returncode, ip in result:
 			if returncode:
 				sshenabledips.append(ip)
@@ -471,7 +477,7 @@ class Login():
 		print("Trying to login into SSH enabled devices.")
 		print('=='*20)
 		with ThreadPoolExecutor(max_workers=5) as executor: #tries to login into 5 different device at the same time to speed up the process
-			sshloginresult = list(executor.map(self.ssh_login, sshenabledips, repeat(usernamelist), repeat(passwordlist), repeat('cisco_ios')))#bug 2
+			sshloginresult = list(executor.map(self.ssh_login, sshenabledips, repeat(usernamelist), repeat(passwordlist), repeat(device_type)))
 		print('=='*20)
 		print("IPs and there login details")
 		for i in sshloginresult:
@@ -498,10 +504,10 @@ class Login():
 		enablelogindatalist = []
 		for i in sshloginresult:
 			if i[0]:
-				enablelogindatalist.append({'device_type' : 'cisco_ios', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})#bug 3
+				enablelogindatalist.append({'device_type' : device_type, 'ip' : i[1], 'username' : i[2], 'password' : i[3]})
 		for i in telnetloginresult:
 			if i[0]:
-				enablelogindatalist.append({'device_type' : 'cisco_ios_telnet', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})#bug 4
+				enablelogindatalist.append({'device_type' : f'{device_type}_telnet', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})
 		print('=='*20)
 		print("Data passed to find enable password:")
 		for i in enablelogindatalist:

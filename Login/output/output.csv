@@ -5,7 +5,7 @@
 "10.4.4.4","Yes","No","Yes","admin","cisco","Not Required","cisco_ios_telnet"
 "10.4.5.5","Yes","Yes","No","admin","cisco","Not Required","cisco_ios"
 "10.4.6.6","Yes","No","Yes","admin","cisco","Not Required","cisco_ios_telnet"
-"10.4.7.7","Yes","No","Yes","admin","cisco","Not Required","cisco_ios_telnet"
+"10.4.7.7","Yes","No","Yes","Not Required","Not Required","Not Found","cisco_ios_telnet"
 "10.4.8.8","Yes","Yes","No","admin","cisco","Not Required","cisco_ios"
 "10.4.9.9","Yes","No","Yes","admin","cisco","Not Required","cisco_ios_telnet"
 "10.4.10.10","Yes","Yes","No","admin","cisco","Not Required","cisco_ios"
