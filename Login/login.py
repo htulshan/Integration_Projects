@@ -146,87 +146,53 @@ class Login():
 
 	#logs into the device using a username and password and returns the result
 	def telnet_login_per_username(self, ip, username, password):
-		#here
+
 		device = telnetlib.Telnet(ip)
 		time.sleep(2)
+
 		response = device.read_very_eager().decode('ascii')
+
 		if 'Username:' in response :
 			device.write(f'{username}\n'.encode('ascii'))
+
+			time.sleep(2)
+			response = device.read_very_eager().decode('ascii')
+			device.write(f'{password}\n'.encode('ascii'))
+
+			time.sleep(2)
+			response = device.read_very_eager().decode('ascii')
+
+			if '#' in response or '>' in response:
+				device.close()
+				return True, ip, username, password
+			else:
+				device.close()
+				return False, ip, username, password
+
 		elif 'Password:' in response :
+
 			device.write(f'{password}\n'.encode('ascii'))
 			time.sleep(2)
 			response = device.read_very_eager().decode('ascii')
-			if '#' in response:
+
+			if '#' in response or '>' in response:
 				device.close()
-				return True, ip, '', password
-			elif '>' in response:#bug 1
-				device.close()
-				return True, ip, '', password
+				return True, ip, username, password
 			else:
 				device.close()
 				return False, ip, '', password
-		time.sleep(2)
 
-		response = device.read_very_eager().decode('ascii')
-		if 'Password:' in response :
-			device.write(f'{password}\n'.encode('ascii'))
-			time.sleep(2)
-			response = device.read_very_eager().decode('ascii')
-
-		if '#' in response:
+		elif '#' in response or '>' in response:
 			device.close()
-			return True, ip, username, password #bug 2
-		elif '>' in response:
-			device.close()
-			return True, ip, username, password
+			return True, ip, '', ''
 		else:
 			device.close()
 			return False, ip, username, password
 
-	#to check if we are able to login into the device using the username and password to privilege 15 or not, if not we need to try enable password.
-	def enable_device_login(self, devicedata):
-
-		priv = False
-
-		device = netmiko.ConnectHandler(**devicedata)
-		response = device.send_command('show privilege')
-		privreg = '(?P<priv>\d+)'
-		match = re.search(privreg, response)
-		if match.group('priv') == '15': #to check what is the privilege level logged into using the username and password
-			priv = True
-		return priv, devicedata
-
-	#to try an enable password to check if it works
-	def try_enable_password(self, devicedata, secret):
-
-		devicedata['secret'] = secret
-		devicedata['timeout'] = 2
-
-		try:
-			device = netmiko.ConnectHandler(**devicedata)
-			device.enable()
-		except:
-			return False, devicedata
-		else:
-			return True, devicedata
-
-	#to try multiple enable password for one IP simultaneously to speed up processing
-	def enable_login_user(self, devicedata, enablepasswordlist):
-		result = []
-		with ThreadPoolExecutor(max_workers = 10) as executor:#tries 10 enable passwords in on go.
-			result = list(executor.map(self.try_enable_password, repeat(devicedata), enablepasswordlist))
-
-		for i in result:
-			if i[0]:
-				del i[1]['timeout']
-				return i[1]
-
-		devicedata['secret'] = 'Not Found'
-		del devicedata['timeout']
-		return devicedata
 
 	#to try enable password on multiple IP at the same time to speed up processing.
 	def enable_login(self, enablelogindatalist, enablepasswordlist):
+
 		#checks if the default priv is 15
 		checkprivdevices = []
 		privnot15list = []
@@ -247,6 +213,57 @@ class Login():
 			result = list(executor.map(self.enable_login_user, privnot15list, repeat(enablepasswordlist)))
 
 		return priv15 + result
+
+
+
+	#to check if we are able to login into the device using the username and password to privilege 15 or not, if not we need to try enable password.
+	def enable_device_login(self, devicedata):
+
+		priv = False
+
+		device = netmiko.ConnectHandler(**devicedata)
+		response = device.send_command('show privilege')
+		device.disconnect()
+
+		privreg = '(?P<priv>\d+)'
+		match = re.search(privreg, response)
+		if match.group('priv') == '15': #to check what is the privilege level logged into using the username and password
+			priv = True
+
+		return priv, devicedata
+
+
+	#to try multiple enable password for one IP simultaneously to speed up processing
+	def enable_login_user(self, devicedata, enablepasswordlist):
+		result = []
+		with ThreadPoolExecutor(max_workers = 5) as executor:#tries 5 enable passwords in on go.
+			result = list(executor.map(self.try_enable_password, repeat(devicedata), enablepasswordlist))
+
+		for i in result:
+			if i[0]:
+				i[1].pop('timeout', 'NA')
+				return i[1]
+
+		devicedata['secret'] = 'Not Found'
+		devicedata.pop('timeout', 'NA')
+		return devicedata
+
+
+	#to try an enable password to check if it works
+	def try_enable_password(self, devicedata, secret):
+
+		devicedata['secret'] = secret
+		devicedata['timeout'] = 2
+
+		try:
+			device = netmiko.ConnectHandler(**devicedata)
+			device.enable()
+		except:
+			return False, devicedata
+		else:
+			device.disconnect()
+			return True, devicedata
+
 
 	#to compile data from output file
 	def compiling_data_for_output_file(self, validhostips, reachableips, sshenabledips, telnetenabledips, enableloginresult):
@@ -432,7 +449,7 @@ class Login():
 		print('=='*20)
 		result = []
 		with ThreadPoolExecutor(max_workers=10) as executor: #checks for SSH on 10 devices simultaneously
-			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat('cisco_ios')))#defaults to check for cisco ios
+			result = list(executor.map(self.test_if_ssh_is_enabled, reachableips, repeat('cisco_ios')))#bug 1
 		for returncode, ip in result:
 			if returncode:
 				sshenabledips.append(ip)
@@ -454,7 +471,7 @@ class Login():
 		print("Trying to login into SSH enabled devices.")
 		print('=='*20)
 		with ThreadPoolExecutor(max_workers=5) as executor: #tries to login into 5 different device at the same time to speed up the process
-			sshloginresult = list(executor.map(self.ssh_login, sshenabledips, repeat(usernamelist), repeat(passwordlist), repeat('cisco_ios')))
+			sshloginresult = list(executor.map(self.ssh_login, sshenabledips, repeat(usernamelist), repeat(passwordlist), repeat('cisco_ios')))#bug 2
 		print('=='*20)
 		print("IPs and there login details")
 		for i in sshloginresult:
@@ -481,15 +498,16 @@ class Login():
 		enablelogindatalist = []
 		for i in sshloginresult:
 			if i[0]:
-				enablelogindatalist.append({'device_type' : 'cisco_ios', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})
+				enablelogindatalist.append({'device_type' : 'cisco_ios', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})#bug 3
 		for i in telnetloginresult:
 			if i[0]:
-				enablelogindatalist.append({'device_type' : 'cisco_ios_telnet', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})
+				enablelogindatalist.append({'device_type' : 'cisco_ios_telnet', 'ip' : i[1], 'username' : i[2], 'password' : i[3]})#bug 4
 		print('=='*20)
 		print("Data passed to find enable password:")
 		for i in enablelogindatalist:
 			print(i)
 		print('=='*20)
+
 
 		#trying to login into the device for different enable passwords
 		print('=='*20)
