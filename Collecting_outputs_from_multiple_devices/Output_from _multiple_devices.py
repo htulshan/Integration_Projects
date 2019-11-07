@@ -52,21 +52,37 @@ class OutputFromMultipleDevices():
 
 
     def main(self):
-        logindatalist = []
+        inputlogindatalist = []
         commandsetlist = []
 
         print("=="*20)
-        input("Please make sure that login data is stored in 'logindata.csv' file and show command is stored in 'commandset.yaml' file, hit RETURN to continue")
+        input("Please make sure that login data is stored in 'input/logindata.csv' file and show command is stored in 'input/commandset.yaml' file, hit RETURN to continue")
 
         print("=="*20)
         print('Reading logindata.')
         with open('input/logindata.csv') as f:
-            logindatalist = list(csv.DictReader(f))
+            inputlogindatalist = list(csv.DictReader(f))
 
         print("=="*20)
         print('Reading show command.')
         with open('input/commandset.yaml') as f:
             commandsetlist = yaml.safe_load(f)
+
+        #creating a new login file data
+
+        logindatalist = []
+
+        for inputdevice in inputlogindatalist:
+
+            device = {}
+
+            device['device_type'] = inputdevice.pop('device_type', 'cisco_ios')
+            device['ip'] = inputdevice.pop('ip', 'Not found in input file')
+            device['username'] = inputdevice.pop('username', '')
+            device['password'] = inputdevice.pop('password', '')
+            device['secret'] = inputdevice.pop('secret', '')
+
+            logindatalist.append(device)
 
         print("=="*20)
         print('Connecting to devices and collecting outputs.')
