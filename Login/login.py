@@ -59,6 +59,7 @@ class Login():
 	#to check if SSH is enabled on the device or not by logging into it with default username and password : ''
 	def test_if_ssh_is_enabled(self, ip, device_type):
 
+		device = {}
 		devicedata = {
 			'device_type' : device_type,
 			'ip' : ip,
@@ -66,22 +67,25 @@ class Login():
 			'password' : ''
 			}
 		try:
-			netmiko.ConnectHandler(**devicedata)
+			device = netmiko.ConnectHandler(**devicedata)
 		except netmiko.ssh_exception.NetMikoAuthenticationException:
 			return True, devicedata['ip'] # if we get a authentication failure, we are able to login connect to the switch using ssh
 		except:
 			return False, devicedata['ip']#any other exception is taken as failure to connect to the device using SSH
 		else:
+			device.disconnect()
 			return True, devicedata['ip']#if we are able to login into the device using blank username and password.
 
 	#to check if telnet is enabled on the device or not by logging into it using telnet.
 	def test_if_telnet_is_enabled(self, ip):
 
+		device = {}
 		try:
-			telnetlib.Telnet(ip)
+			device = telnetlib.Telnet(ip)
 		except:
 			return False, ip#if there is an exception, telnet is not enabled.
 		else:
+			device.close()
 			return True, ip
 
 
@@ -142,7 +146,7 @@ class Login():
 
 	#logs into the device using a username and password and returns the result
 	def telnet_login_per_username(self, ip, username, password):
-
+		#here
 		device = telnetlib.Telnet(ip)
 		time.sleep(2)
 		response = device.read_very_eager().decode('ascii')
@@ -153,10 +157,13 @@ class Login():
 			time.sleep(2)
 			response = device.read_very_eager().decode('ascii')
 			if '#' in response:
+				device.close()
 				return True, ip, '', password
-			elif '>' in response:
+			elif '>' in response:#bug 1
+				device.close()
 				return True, ip, '', password
 			else:
+				device.close()
 				return False, ip, '', password
 		time.sleep(2)
 
@@ -167,10 +174,13 @@ class Login():
 			response = device.read_very_eager().decode('ascii')
 
 		if '#' in response:
-			return True, ip, username, password
+			device.close()
+			return True, ip, username, password #bug 2
 		elif '>' in response:
+			device.close()
 			return True, ip, username, password
 		else:
+			device.close()
 			return False, ip, username, password
 
 	#to check if we are able to login into the device using the username and password to privilege 15 or not, if not we need to try enable password.
@@ -438,7 +448,7 @@ class Login():
 		for i in sshenabledips:
 			if i in telnetminussships: telnetminussships.remove(i)
 
-		#here
+
 		#trying to login into SSH enaled devices.
 		print('=='*20)
 		print("Trying to login into SSH enabled devices.")
